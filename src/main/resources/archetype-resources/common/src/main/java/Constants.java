@@ -12,6 +12,6 @@ public class Constants {
     /**
      * Defines the unique name of the controller type that is used in this example
      */
-    public final static String CONTROLLER_NAME = "CalculatorController";
+    public final static String CONTROLLER_NAME = "MyController";
 
 }
