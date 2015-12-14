@@ -23,7 +23,7 @@ mvn install
 Once this is done you can simply install the server from the server folder
 ```
 cd server
-mvn spring-boot:run
+mvn exec:java
 ```
 
 A client instance can be started by Maven, too:
