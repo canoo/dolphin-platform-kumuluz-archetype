@@ -5,21 +5,22 @@ package ${package}.view;
 
 import ${package}.Constants;
 import ${package}.model.MyModel;
-import com.canoo.dolphin.${artifactId}.ClientContext;
-import com.canoo.dolphin.${artifactId}.javafx.AbstractViewBinder;
-import com.canoo.dolphin.${artifactId}.javafx.FXBinder;
+import com.canoo.dolphin.client.ClientContext;
+import com.canoo.dolphin.client.javafx.AbstractFXMLViewBinder;
+import com.canoo.dolphin.client.javafx.FXBinder;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import java.io.IOException;
 
 /**
- * This class binds a view isnatnce that is created based on the view.fxml (see ClientApplication class).
- * The class extends the {@link AbstractViewBinder} class that is part of the basic DOlphin Platform JavaFX client API and
+ * This class binds a view instance that is created based on the view.fxml.
+ * The class extends the {@link AbstractViewBinder} class that is part of the basic Dolphin Platform JavaFX client API and
  * already defines the lifecycle of the view and offers several properties and features. When extending this class normally
  * only the init() method need to be defined. Here all the UI components should be bound to the model taht is synchronized
  * between client and server.
  */
-public class MyViewBinder extends AbstractViewBinder<MyModel> {
+public class MyView extends AbstractFXMLViewBinder<MyModel> {
 
     /**
      * This UI control is automatically injected by FXML
@@ -39,8 +40,8 @@ public class MyViewBinder extends AbstractViewBinder<MyModel> {
      * be created and synchronized between client and server.
      * @param clientContext the global client context
      */
-    public MyViewBinder(ClientContext clientContext) {
-        super(clientContext, Constants.CONTROLLER_NAME);
+    public MyView(ClientContext clientContext) throws IOException {
+        super(clientContext, Constants.CONTROLLER_NAME, MyView.class.getResource("view.fxml"));
     }
 
     /**
@@ -57,6 +58,6 @@ public class MyViewBinder extends AbstractViewBinder<MyModel> {
         FXBinder.bind(valueField.textProperty()).bidirectionalTo(getModel().valueProperty());
 
         // pressing the button will invoke the reset action on the controller instance on the server
-        resetButton.setOnAction(e -> invoke("reset"));
+        resetButton.setOnAction(e -> invoke(Constants.RESET_ACTION));
     }
 }

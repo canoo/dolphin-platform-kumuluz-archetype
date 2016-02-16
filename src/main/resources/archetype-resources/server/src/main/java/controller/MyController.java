@@ -3,9 +3,9 @@
 #set( $symbol_escape = '\' )
 package ${package}.controller;
 
-import com.canoo.dolphin.${artifactId}.DolphinAction;
-import com.canoo.dolphin.${artifactId}.DolphinController;
-import com.canoo.dolphin.${artifactId}.DolphinModel;
+import com.canoo.dolphin.server.DolphinAction;
+import com.canoo.dolphin.server.DolphinController;
+import com.canoo.dolphin.server.DolphinModel;
 import ${package}.Constants;
 import ${package}.model.MyModel;
 
@@ -47,7 +47,7 @@ public class MyController {
      * annotation the method name will be used. This means that this method can be triggered by calling a "reset" action
      * on the client.
      */
-    @DolphinAction
+    @DolphinAction(Constants.RESET_ACTION)
     public void reset() {
         model.setValue(null);
     }

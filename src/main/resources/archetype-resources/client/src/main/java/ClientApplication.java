@@ -3,13 +3,10 @@
 #set( $symbol_escape = '\' )
 package ${package};
 
-import com.canoo.dolphin.${artifactId}.ClientConfiguration;
-import com.canoo.dolphin.${artifactId}.ClientContext;
-import com.canoo.dolphin.${artifactId}.ClientContextFactory;
-import com.canoo.dolphin.${artifactId}.javafx.JavaFXConfiguration;
-import ${package}.view.MyViewBinder;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
+import com.canoo.dolphin.client.ClientContext;
+import com.canoo.dolphin.client.javafx.DolphinPlatformApplication;
+import ${package}.view.MyView;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -22,33 +19,22 @@ import javafx.stage.Stage;
  * MyViewBinder class is used as client side controller for the view. Internally this class don't contain any controller
  * logic and only binds the given UI to Dolphin Platform and the controller instance on the server.
  */
-public class ClientApplication extends Application {
-
-    /**
-     * Defines the global Dolphin Platform Connection
-     */
-    private ClientContext clientContext;
+public class ClientApplication extends DolphinPlatformApplication {
 
     @Override
-    public void init() throws Exception {
-        //Creates a configuration for the Dolphin Platform. Here the server endpoint is configured
-        ClientConfiguration config = new JavaFXConfiguration("http://localhost:8080/dolphin");
-
-        //Creates the global client context based on the configuration
-        clientContext = ClientContextFactory.connect(config).get();
+    protected String getServerEndpoint() {
+        return "http://localhost:8080/dolphin";
     }
 
+
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        //Loads the view based on a FXML file
-        FXMLLoader loader = new FXMLLoader(ClientApplication.class.getResource("view.fxml"));
-        
-        //Defines the FXML controller for the view. In this case the controller defines all the bindings
-        //between the view and the synchronized Dolphin Platform model.
-        loader.setController(new MyViewBinder(clientContext));
+    protected void start(Stage primaryStage, ClientContext clientContext) throws Exception {
+
+        //Create the view that is bound to a Dolphin Platform controller on the server
+        MyView view = new MyView(clientContext);
 
         //Shows the JavaFX client on the screen
-        Scene scene = new Scene(loader.load());
+        Scene scene = new Scene((Parent) view.getRootNode());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
