@@ -7,4 +7,4 @@ This repository contains a Maven Archetype for a KumuluzEE based project of the 
 For more information visit [our website](http://www.dolphin-platform.io).
 
 ## How to use it
-Simply call ```mvn install``` or ```mvn deploy``` to install the archetype local or in Maven Central
+Simply call ```mvn archetype:generate -Dfilter=com.canoo.dolphin-platform:``` to use the archetype and create a Dolphin Platform Jumpstart project.
