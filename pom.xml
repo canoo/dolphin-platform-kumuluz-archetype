@@ -4,7 +4,7 @@
 
   <groupId>com.canoo.dolphin-platform</groupId>
   <artifactId>kumuluz-archetype</artifactId>
-  <version>0.8.1-SNAPSHOT</version>
+  <version>0.8.0</version>
   <packaging>maven-archetype</packaging>
 
   <name>Dolphin Platform KumuluzEE Archetype</name>
