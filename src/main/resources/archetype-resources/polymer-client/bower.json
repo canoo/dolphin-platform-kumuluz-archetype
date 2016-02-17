@@ -16,7 +16,7 @@
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
     "polymer-theme": "0.5.1",
     "paper-listbox": "polymerelements/paper-listbox#1.0.0",
-    "dolphin-polymer": "0.7.0"
+    "dolphin-polymer": "0.8.0"
   },
   "resolutions": {
     "polymer": "1.1.5"
