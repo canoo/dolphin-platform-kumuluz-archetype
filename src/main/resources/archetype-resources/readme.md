@@ -33,8 +33,9 @@ mvn exec:java
 ```
 
 In addition the Jumpstart contains a web client that is based on Polymer. To run the web client you need to start a local web server in the __polymer-client__ folder.
-On Mac OS you can simply start a local Phyton server by calling the following command in the __polymer-client__ folder:
+On Mac OS you can simply start a local Phyton server by calling the following command:
 ```
+cd polymer-client
 python -m SimpleHTTPServer
 ```
 Once this is done you can open __localhost:8000__ in your browser.
